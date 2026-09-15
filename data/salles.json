@@ -1,0 +1,92 @@
+{
+  "salles": [
+    {
+      "label": "Welcome",
+      "id": "welcome",
+      "postes": [
+        { "label": "Welcome 1", "id": "1" },
+        { "label": "Welcome 2", "id": "2" }
+      ]
+    },
+    {
+      "label": "B02a - Salle D20",
+      "id": "d020",
+      "postes": [
+        { "label": "Poste 01", "id": "m01" },
+        { "label": "Poste 02", "id": "m02" },
+        { "label": "Poste 03", "id": "m03" },
+        { "label": "Poste 04", "id": "m04" },
+        { "label": "Poste 05", "id": "m05" },
+        { "label": "Poste 06", "id": "m06" },
+        { "label": "Poste 07", "id": "m07" },
+        { "label": "Poste 08", "id": "m08" },
+        { "label": "Poste 09", "id": "m09" },
+        { "label": "Poste 10", "id": "m10" }
+      ]
+    },
+    {
+      "label": "B02a - Salle D22",
+      "id": "d022",
+      "postes": [
+        { "label": "Poste 01", "id": "m01" },
+        { "label": "Poste 02", "id": "m02" },
+        { "label": "Poste 03", "id": "m03" },
+        { "label": "Poste 04", "id": "m04" },
+        { "label": "Poste 05", "id": "m05" },
+        { "label": "Poste 06", "id": "m06" },
+        { "label": "Poste 07", "id": "m07" },
+        { "label": "Poste 08", "id": "m08" },
+        { "label": "Poste 09", "id": "m09" },
+        { "label": "Poste 10", "id": "m10" }
+      ]
+    },
+    {
+      "label": "B02a - Salle D24",
+      "id": "d024",
+      "postes": [
+        { "label": "Poste 01", "id": "m01" },
+        { "label": "Poste 02", "id": "m02" },
+        { "label": "Poste 03", "id": "m03" },
+        { "label": "Poste 04", "id": "m04" },
+        { "label": "Poste 05", "id": "m05" },
+        { "label": "Poste 06", "id": "m06" },
+        { "label": "Poste 07", "id": "m07" },
+        { "label": "Poste 08", "id": "m08" },
+        { "label": "Poste 09", "id": "m09" },
+        { "label": "Poste 10", "id": "m10" }
+      ]
+    },
+    {
+      "label": "B02a - Salle D26",
+      "id": "d026",
+      "postes": [
+        { "label": "Poste 01", "id": "m01" },
+        { "label": "Poste 02", "id": "m02" },
+        { "label": "Poste 03", "id": "m03" },
+        { "label": "Poste 04", "id": "m04" },
+        { "label": "Poste 05", "id": "m05" },
+        { "label": "Poste 06", "id": "m06" },
+        { "label": "Poste 07", "id": "m07" },
+        { "label": "Poste 08", "id": "m08" },
+        { "label": "Poste 09", "id": "m09" },
+        { "label": "Poste 10", "id": "m10" }
+      ]
+    },
+    {
+      "label": "B02a - Salle D28",
+      "id": "d028",
+      "postes": [
+        { "label": "Poste 01", "id": "m01" },
+        { "label": "Poste 02", "id": "m02" },
+        { "label": "Poste 03", "id": "m03" },
+        { "label": "Poste 04", "id": "m04" },
+        { "label": "Poste 05", "id": "m05" },
+        { "label": "Poste 06", "id": "m06" },
+        { "label": "Poste 07", "id": "m07" },
+        { "label": "Poste 08", "id": "m08" },
+        { "label": "Poste 09", "id": "m09" },
+        { "label": "Poste 10", "id": "m10" }
+      ]
+    }
+  ]
+}
