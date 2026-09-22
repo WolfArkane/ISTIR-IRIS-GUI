@@ -22,4 +22,4 @@ window = webview.create_window(
 api.start_vpn_watcher()
 api._window = window
 
-webview.start(debug=True)
+webview.start(debug=False)

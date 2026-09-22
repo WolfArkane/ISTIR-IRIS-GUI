@@ -12,44 +12,66 @@
 
 <body>
   <div class="app">
-    <aside class="sidebar">
-      <div class="app-header">
-        <img src="./assets/logo-icon.svg" alt="Logo" class="app-logo">
-        <span class="app-title">ISTIR-IRIS</span>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button id="burger-toggle" class="burger-toggle" aria-label="Ouvrir le menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="app-header">
+          <img src="./assets/logo-icon.svg" alt="Logo" class="app-logo">
+          <span class="app-title">ISTIC-IRIS</span>
+        </div>
       </div>
 
-      <button id="theme-toggle" class="theme-toggle">🌙 Mode sombre</button>
+      <div class="topbar-right">
+        <div id="connection-target" class="connection-target">
+          <span class="connection-dot"></span>
+          <span id="connection-label">Non connecté</span>
+        </div>
 
-      <div class="vpn-frame">
-        <span class="vpn-label">VPN</span>
-        <span id="vpn-status" class="vpn-status vpn-status--off">Déconnecté</span>
+        <div class="vpn-frame">
+          <span class="vpn-label">VPN</span>
+          <span id="vpn-status" class="vpn-status vpn-status--off">Déconnecté</span>
+        </div>
+
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
       </div>
+    </header>
 
-      <div class="select-group">
-        <label for="salle-select">Salle</label>
-        <select id="salle-select">
-          <option value="">-- Choisir une salle --</option>
-        </select>
-      </div>
+    <div class="body-wrapper">
+      <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-      <div class="select-group">
-        <label for="poste-select">Poste</label>
-        <select id="poste-select" disabled>
-          <option value="">-- Choisir un poste --</option>
-        </select>
-      </div>
+      <aside id="sidebar" class="sidebar">
+        <div class="select-group">
+          <label for="salle-select">Salle</label>
+          <select id="salle-select">
+            <option value="">-- Choisir une salle --</option>
+          </select>
+        </div>
 
-      <div class="select-group">
-        <label for="ssh-username">Utilisateur</label>
-        <input type="text" id="ssh-username" placeholder="login">
-      </div>
+        <div class="select-group">
+          <label for="poste-select">Poste</label>
+          <select id="poste-select" disabled>
+            <option value="">-- Choisir un poste --</option>
+          </select>
+        </div>
 
-      <button id="connect-button" class="connect-button" disabled>Se connecter</button>
-    </aside>
+        <div class="select-group">
+          <label for="ssh-username">Utilisateur</label>
+          <input type="text" id="ssh-username" placeholder="login">
+        </div>
 
-    <main class="content">
-      <div id="terminal-container" class="terminal-container"></div>
-    </main>
+        <button id="connect-button" class="connect-button" disabled>Se connecter</button>
+      </aside>
+
+      <main class="content">
+        <div id="terminal-container" class="terminal-container"></div>
+      </main>
+    </div>
   </div>
 
   <script src="./js/theme.js"></script>
@@ -57,5 +79,6 @@
   <script src="./js/terminal.js"></script>
   <script src="./js/vpn.js"></script>
   <script src="./vendor/alertbox.min.js"></script>
+  <script src="./js/layout.js"></script>
 </body>
 </html>

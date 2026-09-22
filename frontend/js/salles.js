@@ -41,6 +41,20 @@ function updateConnectButton() {
   connectButton.classList.toggle("active", ready);
 }
 
+function updateConnectionTarget(salleLabel, posteLabel) {
+  const target = document.getElementById("connection-target");
+  const label = document.getElementById("connection-label");
+  if (!target || !label) return;
+
+  if (salleLabel && posteLabel) {
+    label.textContent = `${salleLabel} / ${posteLabel}`;
+    target.classList.add("connected");
+  } else {
+    label.textContent = "Non connecté";
+    target.classList.remove("connected");
+  }
+}
+
 connectButton.addEventListener("click", async () => {
   const salleId = salleSelect.value;
   const posteId = posteSelect.value;
@@ -67,10 +81,14 @@ connectButton.addEventListener("click", async () => {
     connectButton.textContent = "Connecté";
     connectButton.disabled = true;
 
+    // récupère les libellés lisibles (pas juste les id) pour l'affichage
+    const salleLabel = salleSelect.options[salleSelect.selectedIndex].textContent;
+    const posteLabel = posteSelect.options[posteSelect.selectedIndex].textContent;
+    updateConnectionTarget(salleLabel, posteLabel);
+
     //fitAddon.fit();
     //window.pywebview.api.ssh_resize(window.term.cols, window.term.rows);
   } else {
-    //alert("Erreur de connexion : " + result.message);
     alertbox.render({
       title: 'Erreur de connexion',
       message: result.message,

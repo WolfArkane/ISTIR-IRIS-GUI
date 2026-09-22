@@ -33,20 +33,62 @@ body {
 
 .app {
   display: flex;
+  flex-direction: column;
   height: 100vh;
+}
+
+/* ---- Topbar ---- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.burger-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+  cursor: pointer;
+  padding: 0;
+}
+
+.burger-toggle span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text);
+  border-radius: 2px;
 }
 
 .app-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
 }
 
 .app-logo {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 
@@ -54,6 +96,79 @@ body {
   font-size: 16px;
   font-weight: 600;
   color: var(--text);
+}
+
+.connection-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.connection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e06c75;
+}
+
+.connection-target.connected .connection-dot {
+  background: #98c379;
+}
+
+.connection-target.connected #connection-label,
+.connection-target.connected {
+  color: var(--text);
+}
+
+.vpn-frame {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+}
+
+.vpn-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.vpn-status {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.vpn-status--off {
+  color: #e06c75;
+}
+
+.vpn-status--on {
+  color: #98c379;
+}
+
+.theme-toggle {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ---- Body / sidebar ---- */
+
+.body-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  position: relative;
 }
 
 .sidebar {
@@ -66,56 +181,43 @@ body {
   gap: 20px;
   overflow-y: auto;
   min-height: 0;
+  flex-shrink: 0;
+  transition: margin-left 0.25s ease;
 }
 
-.theme-toggle {
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg-panel);
-  color: var(--text);
-  cursor: pointer;
-  font-size: 13px;
+/* Off-canvas par défaut sur petit écran, escamotable partout via .collapsed */
+.sidebar.collapsed {
+  margin-left: -260px;
 }
 
-.vpn-frame {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg-panel);
+.sidebar-overlay {
+  display: none;
 }
 
-.vpn-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-}
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    margin-left: -260px;
+  }
 
-.vpn-status {
-  font-weight: 600;
-  font-size: 14px;
-}
+  .sidebar.open {
+    margin-left: 0;
+  }
 
-.vpn-status--off {
-  color: #e06c75;
-}
-
-.vpn-status--on {
-  color: #98c379;
-}
-
-.vpn-button {
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  background: var(--border);
-  color: var(--text-muted);
-  cursor: not-allowed;
-  font-size: 13px;
+  .sidebar-overlay.open {
+    display: block;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 15;
+  }
 }
 
 .select-group {
@@ -131,15 +233,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-.select-group select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--bg-panel);
-  color: var(--text);
-  font-size: 14px;
-}
-
+.select-group select,
 .select-group input {
   padding: 8px;
   border-radius: 6px;
@@ -151,16 +245,6 @@ body {
 
 .select-group select:disabled {
   opacity: 0.5;
-}
-
-.connect-frame {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg-panel);
 }
 
 .connect-button {
@@ -185,17 +269,6 @@ body {
   min-width: 0;
   padding: 16px;
   display: flex;
-}
-
-.terminal-placeholder {
-  flex: 1;
-  background: #0c0c0c;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-family: monospace;
 }
 
 .terminal-container {
