@@ -38,6 +38,7 @@
           <span id="vpn-status" class="vpn-status vpn-status--off">Déconnecté</span>
         </div>
 
+        <button id="sftp-toggle" class="theme-toggle" aria-label="Basculer le panneau SFTP">📁</button>
         <button id="theme-toggle" class="theme-toggle">🌙</button>
       </div>
     </header>
@@ -65,11 +66,17 @@
           <input type="text" id="ssh-username" placeholder="login">
         </div>
 
+        <div class="select-group">
+          <label for="ssh-password">Mot de passe</label>
+          <input type="password" id="ssh-password" placeholder="••••••••">
+        </div>
+
         <button id="connect-button" class="connect-button" disabled>Se connecter</button>
       </aside>
 
       <main class="content">
         <div id="terminal-container" class="terminal-container"></div>
+        <div id="sftp-container" class="sftp-container collapsed"></div>
       </main>
     </div>
   </div>
@@ -77,6 +84,7 @@
   <script src="./js/theme.js"></script>
   <script src="./js/salles.js"></script>
   <script src="./js/terminal.js"></script>
+  <script src="./js/sftp.js"></script>
   <script src="./js/vpn.js"></script>
   <script src="./vendor/alertbox.min.js"></script>
   <script src="./js/layout.js"></script>

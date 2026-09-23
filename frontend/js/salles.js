@@ -59,11 +59,12 @@ connectButton.addEventListener("click", async () => {
   const salleId = salleSelect.value;
   const posteId = posteSelect.value;
   const username = document.getElementById("ssh-username").value;
+  const password = document.getElementById("ssh-password").value;
 
   if (!username) {
     alertbox.render({
       title: 'Erreur',
-      message: 'Il faut renseigner un utilisateur !',
+      message: 'Il faut renseigner un utilisateur et un mot de passe !',
       btnTitle: 'Ok',
       border: true,
       themeColor: '#da1d1d'
@@ -74,8 +75,10 @@ connectButton.addEventListener("click", async () => {
   const host = `${salleId}${posteId}`;
 
   console.log("Dimensions envoyées:", window.term.cols, window.term.rows);
-  const result = await window.pywebview.api.ssh_connect(host, username, window.term.cols, window.term.rows);
+  const result = await window.pywebview.api.ssh_connect(host, username, password, window.term.cols, window.term.rows);
   console.log(result)
+
+  document.getElementById("ssh-password").value = "";
 
   if (result.status === "ok") {
     connectButton.textContent = "Connecté";
