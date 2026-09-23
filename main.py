@@ -5,11 +5,20 @@ import webview
 from api import Api
 
 html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend", "index.html")
-
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "data.json")
 with open(data_path, "r", encoding="utf-8") as f:
     data = json.load(f)
     print(data)
+
+
+if sys.platform == "win32":
+    import ctypes
+    try:
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(f"wolfarkane.istir_iris.{data['version']}")
+    except Exception:
+        pass
+
+icon_path = os.path.join(os.path.dirname(__file__), 'frontend', 'assets', 'favicon.ico')
 
 api = Api(None)
 window = webview.create_window(
@@ -22,4 +31,4 @@ window = webview.create_window(
 api.start_vpn_watcher()
 api._window = window
 
-webview.start(debug=True)
+webview.start(debug=True, icon='./frontend/assets/favicon.ico')
