@@ -2,7 +2,7 @@ import sys, os, json
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "libs"))
 
 import webview
-from api import Api
+from api import CombinedAPI
 
 html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend", "index.html")
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "data.json")
@@ -20,7 +20,7 @@ if sys.platform == "win32":
 
 icon_path = os.path.join(os.path.dirname(__file__), 'frontend', 'assets', 'favicon.ico')
 
-api = Api(None)
+api = CombinedAPI(None)
 window = webview.create_window(
     '{} - {}'.format(data['name'], data['version']),
     html_path,
