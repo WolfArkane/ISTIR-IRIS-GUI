@@ -4,19 +4,6 @@ import paramiko
 
 class SftpApi:
 
-    def connect_sftp(self, password):
-        try:
-            client = paramiko.SSHClient()
-            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            client.connect(self._host, username=self._username, password=password, timeout=10)
-            self._sftp_client = client
-            self._sftp = client.open_sftp()
-            print("DEBUG: SFTP connecté avec succès")
-            self._window.evaluate_js("onSftpReady(true)")
-        except Exception as e:
-            print(f"DEBUG SFTP ERROR : {type(e).__name__}: {e}")
-            self._window.evaluate_js(f"onSftpReady(false, `{str(e)}`)")
-
     def sftp_list_dir(self, path="."):
         if not self._sftp:
             return {"error": "SFTP non connecté"}

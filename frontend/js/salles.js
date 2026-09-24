@@ -61,7 +61,7 @@ connectButton.addEventListener("click", async () => {
   const username = document.getElementById("ssh-username").value;
   const password = document.getElementById("ssh-password").value;
 
-  if (!username) {
+  if (!username || !password) {
     alertbox.render({
       title: 'Erreur',
       message: 'Il faut renseigner un utilisateur et un mot de passe !',

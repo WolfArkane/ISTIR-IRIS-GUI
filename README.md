@@ -4,7 +4,8 @@ Application de bureau (Windows / Linux / macOS) permettant de se connecter aux p
 
 ISTIR-IRIS : ISTIC & ESIR Infrastructure Remote Interface System.
 
-**Version actuelle : 1.1.2-dev**
+**Version actuelle : 1.1.3-dev**
+En développement actif
 
 ## Fonctionnalités
 
@@ -44,9 +45,8 @@ L'application ouvre une fenêtre native. Sélectionnez une salle et un poste, re
 ## Notes techniques
 
 - La détection du VPN vérifie qu'une interface réseau possède une adresse IP dans le sous-réseau `148.60.9.0/24`.
-- La connexion SSH principale s'appuie sur le binaire `ssh` du système, piloté via un pseudo-terminal (PTY), pour permettre une authentification interactive identique à un terminal classique.
-- La connexion SFTP utilise `paramiko` en parallèle, avec le même mot de passe, pour rester entièrement multiplateforme sans dépendre d'une version particulière d'OpenSSH.
+- La connexion SSH et la connexion SFTP utilisent `paramiko`, avec le même mot de passe, pour rester entièrement multiplateforme sans dépendre d'une version particulière d'OpenSSH.
 
 ## État du projet
 
-Version en développement actif (1.1.0-dev). Les fonctionnalités de base (VPN, SSH, SFTP, thèmes) sont fonctionnelles ; des ajustements d'ergonomie et de robustesse sont encore en cours.
+Les fonctionnalités de base (VPN, SSH, SFTP, thèmes) sont fonctionnelles ; des ajustements d'ergonomie et de robustesse sont encore en cours.

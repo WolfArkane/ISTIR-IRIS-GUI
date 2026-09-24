@@ -6,6 +6,8 @@ class Api:
         self._proc = None
         self._sftp = None
         self._sftp_client = None
+        self._ssh_client = None
+        self._channel = None
         self._host = None
         self._username = None
 
