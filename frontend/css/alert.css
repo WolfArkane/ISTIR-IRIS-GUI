@@ -1,0 +1,84 @@
+/* ---------------------------------- */
+/* Overlay + boîte d'alerte           */
+/* ---------------------------------- */
+
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.alert-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.alert-box {
+  background: var(--bg-secondary, #fff);
+  color: var(--text-primary, #111);
+  border-radius: 10px;
+  padding: 20px 24px;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: translateY(-8px);
+  transition: transform 0.15s ease;
+}
+
+.alert-overlay.visible .alert-box {
+  transform: translateY(0);
+}
+
+.alert-box.bordered {
+  border: 2px solid var(--alert-theme-color, #da1d1d);
+}
+
+.alert-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--alert-theme-color, inherit);
+}
+
+.alert-message {
+  margin: 0 0 18px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--text-secondary, #444);
+}
+
+.alert-btn {
+  display: block;
+  margin-left: auto;
+  padding: 6px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--alert-theme-color, #da1d1d);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.alert-btn:hover {
+  opacity: 0.85;
+}
+
+/* Thème sombre : ajuste juste le fond/texte, la couleur d'accent reste celle passée en param */
+:root[data-theme="dark"] .alert-box,
+body.dark .alert-box {
+  background: var(--bg-secondary-dark, #2a2a2a);
+  color: var(--text-primary-dark, #f1f1f1);
+}
+
+:root[data-theme="dark"] .alert-message,
+body.dark .alert-message {
+  color: var(--text-secondary-dark, #bbb);
+}

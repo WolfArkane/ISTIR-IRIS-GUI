@@ -4,7 +4,7 @@ Application de bureau (Windows / Linux / macOS) permettant de se connecter aux p
 
 ISTIR-IRIS : ISTIC & ESIR Infrastructure Remote Interface System.
 
-**Version actuelle : 1.1.3-dev**
+**Version actuelle : 1.1.4-dev**
 En développement actif
 
 ## Fonctionnalités
