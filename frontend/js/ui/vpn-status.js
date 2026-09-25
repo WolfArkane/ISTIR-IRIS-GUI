@@ -1,5 +1,6 @@
 const vpnStatus = document.getElementById("vpn-status");
 
+// Appelée par Python via evaluate_js() depuis le watcher VPN
 function updateVpnStatus(connected) {
   if (connected) {
     vpnStatus.textContent = "Connecté";

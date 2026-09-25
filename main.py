@@ -31,4 +31,4 @@ window = webview.create_window(
 api.start_vpn_watcher()
 api._window = window
 
-webview.start(debug=True, icon='./frontend/assets/favicon.ico')
+webview.start(debug=False, icon='./frontend/assets/favicon.ico')

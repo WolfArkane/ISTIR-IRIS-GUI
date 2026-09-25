@@ -10,6 +10,7 @@ term.open(document.getElementById("terminal-container"));
 window.term = term;
 window.fitAddon = fitAddon;
 
+// Appelée par Python via evaluate_js() - doit rester globale
 function writeToTerminal(data) {
   term.write(data);
 }
@@ -19,22 +20,27 @@ function getSafeColMargin() {
   return Number.isInteger(dpr) ? 0 : 2;
 }
 
+let resizeTimeout = null;
+
+function sendResize() {
+  const margin = getSafeColMargin();
+  const safeCols = Math.max(term.cols - margin, 10);
+  sshApi.resize(safeCols, term.rows);
+}
+
 function flushPendingResize() {
   if (resizeTimeout) {
     clearTimeout(resizeTimeout);
     resizeTimeout = null;
-    const margin = getSafeColMargin();
-    const safeCols = Math.max(term.cols - margin, 10);
-    window.pywebview.api.ssh_resize(safeCols, term.rows);
+    sendResize();
   }
 }
 
 term.onData((data) => {
   flushPendingResize();
-  window.pywebview.api.ssh_send_input(data);
+  sshApi.sendInput(data);
 });
 
-let resizeTimeout = null;
 const terminalContainer = document.getElementById("terminal-container");
 
 const resizeObserver = new ResizeObserver(() => {
@@ -42,9 +48,7 @@ const resizeObserver = new ResizeObserver(() => {
 
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    const margin = getSafeColMargin();
-    const safeCols = Math.max(term.cols - margin, 10);
-    window.pywebview.api.ssh_resize(safeCols, term.rows);
+    sendResize();
     resizeTimeout = null;
   }, 400);
 });

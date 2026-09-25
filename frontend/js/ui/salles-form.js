@@ -5,7 +5,7 @@ const connectButton = document.getElementById("connect-button");
 let SALLES_DATA = { salles: [] };
 
 window.addEventListener("pywebviewready", async () => {
-  SALLES_DATA = await window.pywebview.api.get_salles();
+  SALLES_DATA = await sallesApi.getSalles();
 
   SALLES_DATA.salles.forEach((salle) => {
     const option = document.createElement("option");
@@ -55,6 +55,14 @@ function updateConnectionTarget(salleLabel, posteLabel) {
   }
 }
 
+// Appelée par Python via evaluate_js() si la session SSH se termine côté serveur
+function onSshClosed() {
+  appState.connected = false;
+  connectButton.textContent = "Se connecter";
+  connectButton.disabled = false;
+  updateConnectionTarget(null, null);
+}
+
 connectButton.addEventListener("click", async () => {
   const salleId = salleSelect.value;
   const posteId = posteSelect.value;
@@ -74,23 +82,18 @@ connectButton.addEventListener("click", async () => {
 
   const host = `${salleId}${posteId}`;
 
-  console.log("Dimensions envoyées:", window.term.cols, window.term.rows);
-  const result = await window.pywebview.api.ssh_connect(host, username, password, window.term.cols, window.term.rows);
-  console.log(result)
+  const result = await sshApi.connect(host, username, password, window.term.cols, window.term.rows);
 
   document.getElementById("ssh-password").value = "";
 
   if (result.status === "ok") {
+    appState.connected = true;
     connectButton.textContent = "Connecté";
     connectButton.disabled = true;
 
-    // récupère les libellés lisibles (pas juste les id) pour l'affichage
     const salleLabel = salleSelect.options[salleSelect.selectedIndex].textContent;
     const posteLabel = posteSelect.options[posteSelect.selectedIndex].textContent;
     updateConnectionTarget(salleLabel, posteLabel);
-
-    //fitAddon.fit();
-    //window.pywebview.api.ssh_resize(window.term.cols, window.term.rows);
   } else {
     alertbox.render({
       title: 'Erreur de connexion',
@@ -99,6 +102,5 @@ connectButton.addEventListener("click", async () => {
       border: true,
       themeColor: '#da1d1d'
     });
-    return;
   }
 });
