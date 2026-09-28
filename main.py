@@ -6,10 +6,16 @@ from api import CombinedAPI
 
 html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend", "index.html")
 data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "data.json")
-with open(data_path, "r", encoding="utf-8") as f:
-    data = json.load(f)
-    print(data)
+DEFAULT_DATA = {"name": "ISTIR-IRIS", "version": "dev"}
 
+try:
+    with open(data_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if "version" not in data or "name" not in data:
+        raise ValueError("Fichier data.json incomplet (clé 'name' ou 'version' manquante)")
+    print(data)
+except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
+    print(f"WARNING: Impossible de charger {data_path} ({e}), utilisation des valeurs par défaut.", flush=True)
 
 if sys.platform == "win32":
     import ctypes
@@ -31,4 +37,4 @@ window = webview.create_window(
 api.start_vpn_watcher()
 api._window = window
 
-webview.start(debug=False, icon='./frontend/assets/favicon.ico')
+webview.start(debug=False, icon=icon_path)

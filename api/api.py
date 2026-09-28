@@ -18,3 +18,4 @@ class Api:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError) as e:
             print(f"DEBUG get_salles ERROR: {e}", flush=True)
+            return {"salles": [], "error": str(e)}

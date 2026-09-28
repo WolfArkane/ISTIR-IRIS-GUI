@@ -1,5 +1,6 @@
 import threading
 import paramiko
+from .jsutil import js_string
 
 class SshApi:
 
@@ -22,8 +23,7 @@ class SshApi:
                         if not data:
                             break
                         text = data.decode(errors="ignore")
-                        safe_text = text.replace("\\", "\\\\").replace("`", "\\`")
-                        self._window.evaluate_js(f"writeToTerminal(`{safe_text}`)")
+                        self._window.evaluate_js(f"writeToTerminal({js_string(text)})")
                     except Exception as e:
                         print(f"DEBUG ssh read error: {e}")
                         break
@@ -38,19 +38,33 @@ class SshApi:
 
             return {"status": "ok"}
         except Exception as e:
-            self._window.evaluate_js(f"onSftpReady(false, `{str(e)}`)")
+            self._window.evaluate_js(f"onSftpReady(false, {js_string(e)})")
             return {"status": "error", "message": str(e)}
 
     def ssh_send_input(self, data):
-        if self._channel:
+        if not self._channel:
+            return
+        try:
             self._channel.send(data)
+        except Exception as e:
+            print(f"DEBUG ssh_send_input error: {e}", flush=True)
 
     def ssh_resize(self, cols, rows):
-        if self._channel:
+        if not self._channel:
+            return
+        try:
             self._channel.resize_pty(width=cols, height=rows)
+        except Exception as e:
+            print(f"DEBUG ssh_resize error: {e}", flush=True)
 
     def ssh_disconnect(self):
-        if self._channel:
-            self._channel.close()
-        if self._ssh_client:
-            self._ssh_client.close()
+        try:
+            if self._channel:
+                self._channel.close()
+        except Exception as e:
+            print(f"DEBUG ssh_disconnect channel error: {e}", flush=True)
+        try:
+            if self._ssh_client:
+                self._ssh_client.close()
+        except Exception as e:
+            print(f"DEBUG ssh_disconnect client error: {e}", flush=True)

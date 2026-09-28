@@ -1,6 +1,7 @@
 import os, stat, threading
 import webview
 import paramiko
+from .jsutil import js_string
 
 class SftpApi:
 
@@ -30,7 +31,7 @@ class SftpApi:
                 self._sftp.get(remote_path, local_path, callback=lambda s, t: self._window.evaluate_js(f"onSftpProgress({s},{t})"))
                 self._window.evaluate_js("onSftpDone(true)")
             except Exception as e:
-                self._window.evaluate_js(f"onSftpDone(false, `{str(e)}`)")
+                self._window.evaluate_js(f"onSftpDone(false, {js_string(e)})")
 
         threading.Thread(target=run, daemon=True).start()
         return {"started": True}
@@ -48,7 +49,7 @@ class SftpApi:
                     callback=lambda s, t: self._window.evaluate_js(f"onSftpProgress({s},{t})"))
                 self._window.evaluate_js("onSftpDone(true)")
             except Exception as e:
-                self._window.evaluate_js(f"onSftpDone(false, `{str(e)}`)")
+                self._window.evaluate_js(f"onSftpDone(false, {js_string(e)})")
 
         threading.Thread(target=run, daemon=True).start()
         return {"started": True}

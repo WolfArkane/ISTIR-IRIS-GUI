@@ -4,7 +4,7 @@ Application de bureau (Windows / Linux / macOS) permettant de se connecter aux p
 
 ISTIR-IRIS : ISTIC & ESIR Infrastructure Remote Interface System.
 
-**Version actuelle : 1.1.5-dev**
+**Version actuelle : 1.1.6-dev**
 - En développement actif
 
 ## Fonctionnalités
@@ -30,7 +30,7 @@ Cloner le dépôt puis installer les dépendances :
 pip install -r data/requirements.txt
 ```
 
-Le fichier `requirements.txt` gère automatiquement les dépendances spécifiques à chaque plateforme (`pywinpty` sous Windows, `ptyprocess` sous Linux/macOS).
+Le fichier `requirements.txt` gère automatiquement les dépendances.
 
 ## Lancement
 

@@ -1,11 +1,5 @@
 import os, json, subprocess, threading, platform, sys, webview, time, stat
 import paramiko
-
-if sys.platform == "win32":
-    from winpty import PtyProcess
-else:
-    from ptyprocess import PtyProcess
-
 import psutil, ipaddress
 ISTIC_SUBNET = ipaddress.ip_network("148.60.9.0/24")
 
