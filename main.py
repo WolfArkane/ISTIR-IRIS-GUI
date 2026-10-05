@@ -31,10 +31,10 @@ window = webview.create_window(
     '{} - {}'.format(data['name'], data['version']),
     html_path,
     js_api=api,
-    min_size=(600, 300)
+    min_size=(650, 350)
     )
 
 api.start_vpn_watcher()
 api._window = window
 
-webview.start(debug=False, icon=icon_path)
+webview.start(debug=True, icon=icon_path)

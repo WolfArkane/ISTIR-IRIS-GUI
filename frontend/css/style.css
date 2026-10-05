@@ -360,3 +360,23 @@ body {
   flex: 0 0 auto;
   width: 32px;
 }
+
+
+/* Connect VPN Button */
+
+.connect-vpn-button {
+  margin-top: auto;
+  height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.connect-vpn-button.active {
+  cursor: pointer;
+  opacity: 1;
+}
