@@ -1,4 +1,5 @@
 import os, json
+from core.paths import DATA_DIR
 
 class Api:
     def __init__(self, window_ref):
@@ -13,7 +14,7 @@ class Api:
 
     def get_salles(self):
         try:
-            path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "salles.json")
+            path = DATA_DIR / "salles.json"
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError) as e:

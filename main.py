@@ -4,9 +4,13 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "libs"))
 import webview
 from api import CombinedAPI
 
-html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend", "index.html")
-data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "data.json")
+from core.paths import FRONTEND_DIR, DATA_DIR
+html_path = str(FRONTEND_DIR / "index.html")
+data_path = DATA_DIR / "data.json"
+icon_path = str(FRONTEND_DIR / "assets" / "favicon.ico")
+
 DEFAULT_DATA = {"name": "ISTIR-IRIS", "version": "dev"}
+data = DEFAULT_DATA
 
 try:
     with open(data_path, "r", encoding="utf-8") as f:

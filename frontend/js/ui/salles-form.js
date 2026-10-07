@@ -5,8 +5,20 @@ const connectButton = document.getElementById("connect-button");
 let SALLES_DATA = { salles: [] };
 
 window.addEventListener("pywebviewready", async () => {
-  SALLES_DATA = await sallesApi.getSalles();
+  const data = await sallesApi.getSalles();
 
+  if(!data || !Array.isArray(data.salles)) {
+    console.error("Réponse get_salles invalide :", data);
+    alertbox.render({
+      title: "Erreur",
+      message: data?.message || data?.error || "Impossible de charger les salles.",
+      border: true,
+      themeColor: "#da1d1d"
+    });
+    return;
+  }
+
+  SALLES_DATA = data;
   SALLES_DATA.salles.forEach((salle) => {
     const option = document.createElement("option");
     option.value = salle.id;
