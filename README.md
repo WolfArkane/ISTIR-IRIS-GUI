@@ -4,7 +4,7 @@ Application de bureau (Windows / Linux / macOS) permettant de se connecter aux p
 
 ISTIR-IRIS : ISTIC & ESIR Infrastructure Remote Interface System.
 
-**Version actuelle : 1.1.6-dev**
+**Version actuelle : 1.1.7-dev**
 - En développement actif
 
 ## Fonctionnalités
@@ -49,4 +49,4 @@ L'application ouvre une fenêtre native. Sélectionnez une salle et un poste, re
 
 ## État du projet
 
-Les fonctionnalités de base (VPN, SSH, SFTP, thèmes) sont fonctionnelles ; des ajustements d'ergonomie et de robustesse sont encore en cours.
+Les fonctionnalités de base ( Détection VPN, SSH, SFTP, thèmes) sont fonctionnelles ; des ajustements d'ergonomie et de robustesse sont encore en cours.
