@@ -1,10 +1,14 @@
-import sys, os, json
+import json
+import os
+import sys
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "libs"))
 
 import webview
-from api import CombinedAPI
 
-from core.paths import FRONTEND_DIR, DATA_DIR
+from api import CombinedAPI
+from core.paths import DATA_DIR, FRONTEND_DIR
+
 html_path = str(FRONTEND_DIR / "index.html")
 data_path = DATA_DIR / "data.json"
 icon_path = str(FRONTEND_DIR / "assets" / "favicon.ico")

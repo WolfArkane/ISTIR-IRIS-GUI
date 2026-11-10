@@ -1,7 +1,11 @@
-import os, stat, threading
+import os
+import stat
+import threading
+
 import webview
-import paramiko
+
 from .jsutil import js_string
+
 
 class SftpApi:
 

@@ -1,5 +1,7 @@
-import os, json
+import json
+
 from core.paths import DATA_DIR
+
 
 class Api:
     def __init__(self, window_ref):

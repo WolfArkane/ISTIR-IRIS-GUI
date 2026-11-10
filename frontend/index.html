@@ -2,7 +2,9 @@
 <html lang="fr">
 
 <head>
+  <meta name="description" content="Une application simple pour aider les étudiants de l'ISTIC et de l'ESIR.">
   <meta charset="UTF-8">
+  
   <title>ISTIR-IRIS GUI</title>
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
@@ -19,7 +21,7 @@
 
     <header class="topbar">
       <div class="topbar-left">
-        <button id="burger-toggle" class="burger-toggle" aria-label="Ouvrir le menu">
+        <button type="button" id="burger-toggle" class="burger-toggle" aria-label="Ouvrir le menu">
           <span></span>
           <span></span>
           <span></span>
@@ -42,9 +44,8 @@
           <span id="vpn-status" class="vpn-status vpn-status--off">Déconnecté</span>
         </div>
 
-        <button id="connect-vpn-button" class="connect-vpn-button">🌐</button>
-        <button id="sftp-toggle" class="theme-toggle" aria-label="Basculer le panneau SFTP">📁</button>
-        <button id="theme-toggle" class="theme-toggle">🌙</button>
+        <button type="button" id="sftp-toggle" class="theme-toggle" aria-label="Basculer le panneau SFTP">📁</button>
+        <button type="button" id="theme-toggle" class="theme-toggle">🌙</button>
       </div>
     </header>
 
@@ -76,7 +77,7 @@
           <input type="password" id="ssh-password" placeholder="••••••••">
         </div>
 
-        <button id="connect-button" class="connect-button" disabled>Se connecter</button>
+        <button type="button" id="connect-button" class="connect-button" disabled>Se connecter</button>
       </aside>
 
       <main class="content">
